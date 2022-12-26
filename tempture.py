@@ -1,0 +1,25 @@
+from sense_hat import SenseHat
+import time
+
+sense = SenseHat()
+sense.low_light = True
+
+green = (0, 255, 0)
+yellow = (255, 255, 0)
+blue = (0, 0, 255)
+red = (255, 0, 0)
+white = (255,255,255)
+nothing = (0,0,0)
+pink = (255,105, 180)
+while(True):
+  temp = sense.get_temperature()
+  print("溫度= ", temp)
+  if (temp>28): #hot
+     bg_color=(255,0,0)
+  elif (temp<20): #cold
+     bg_color=(0,0,255)
+  else:  #fine
+    bg_color=(0,255,0)
+  t_str = str(round(temp,1)) 
+  sense.show_message(t_str, 0.3,(255,255,255),bg_color)    
+  time.sleep(0.5)
